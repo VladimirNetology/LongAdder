@@ -2,18 +2,16 @@ import java.util.Random;
 import java.util.concurrent.atomic.LongAdder;
 
 public class Shop {
-    public long countSum() {
+    public void countSum(LongAdder totalSum) {
         System.out.println("Shop started " + Thread.currentThread().getName());
         int[] arrSum = new int[100];
-        for (int i = 0; i < arrSum.length; i++) {
+        for (int i : arrSum) {
             arrSum[i] = new Random().nextInt(50000);
         }
 
-        LongAdder totalSum = new LongAdder();
-        for (int i = 0; i < arrSum.length; i++) {
-            totalSum.add(arrSum[i]);
+        for (int j : arrSum) {
+            totalSum.add(j);
         }
         System.out.println("Shop finished. " + Thread.currentThread().getName());
-        return totalSum.sum();
     }
 }
